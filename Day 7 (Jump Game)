@@ -1,0 +1,71 @@
+class Solution1 { //Dp solution O(n^2)
+public:
+    bool canJump(vector<int>& nums) {
+        int i=0;
+        bool t=false;
+        unordered_map<int, bool> d;
+        return solve(i,t,nums,nums.size(),d);
+        
+    }
+    bool solve(int i,bool t,vector<int>& nums,int n,unordered_map<int, bool> &d)
+    {
+        if(d.find(i)!=d.end())
+        {
+            return d[i];
+        }
+        else if(t==true)
+        {
+            return d[i]=true;
+        }
+        else if(i>=n-1)
+        {
+           return d[i]=true; 
+        }
+        else if(nums[i]==0)
+        {
+            return d[i]=false;
+        }
+        else
+        {
+            for(int j=1;j<=nums[i];j++)
+            {
+                d[i+j]=solve(i+j,t,nums,n,d);
+                t=t || d[i+j];
+                
+                if(t==true)
+                {   
+                    
+                    return d[i]=true;
+                }
+            }
+            return d[i]=false;
+        }
+    }
+};
+
+
+
+
+
+class Solution { // Greedy approach O(n)
+public:
+    bool canJump(vector<int>& nums) {
+        int i=nums.size()-2;
+        int goal=nums.size()-1;
+        while(i>=0)
+        {
+            if(i+nums[i]>=goal)
+            {
+                goal=i;
+            }
+            i-=1;
+        }
+        if(goal==0)
+        {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+};
