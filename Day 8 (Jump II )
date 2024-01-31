@@ -1,0 +1,47 @@
+class Solution { //Greedy approach O(n^2)
+public:
+    int jump(vector<int>& nums) {
+        int goal=nums.size()-1;
+        int i=goal-1;
+        int c=0;
+        while(i>=0)
+        {
+            if(i+nums[i]>=goal)
+            {
+                int j=i;
+                int target=j;
+                while(j>=0)
+                {
+                    if(j+nums[j]>=goal)
+                    {
+                        target=j;
+                    }
+                    j-=1;
+                    
+                }
+                goal=target;
+                
+            }
+            else
+            {
+                int j=i;
+                int target=goal;
+                while(j>=0)
+                {
+                    if(j+nums[j]>=goal)
+                    {
+                        target=j;
+                    }
+                    j-=1;
+                    
+                }
+                goal=target;
+                
+            }
+            i=min(i-1,goal-1);
+            c+=1;
+        }
+        return c;
+        
+    }
+};
