@@ -1,0 +1,29 @@
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        if(nums.count(0)>1):
+            ans=[]
+            for i in range(len(nums)):
+                ans.append(0)
+        else:
+            a=1
+            b=1
+            ans=[]
+            for i in range(len(nums)):
+                a=a*nums[i]
+            for i in nums:
+                if(i!=0):
+                    b=b*i
+            if(a==b):
+                for i in nums:
+                    ans.append(a//i)
+            else:
+                for i in nums:
+                    if(i==0):
+                        ans.append(b)
+                    else:
+                        ans.append(a//i)
+        return ans
+                    
+            
+            
+        
