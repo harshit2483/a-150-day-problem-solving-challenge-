@@ -1,0 +1,43 @@
+class Solution {
+public:
+    int candy(vector<int>& ratings) {
+        vector<int> res;
+        int n=ratings.size();
+        for(int i=0;i<n;i++)
+        {
+            res.push_back(1);
+        }
+        for(int i=1;i<n;i++)
+        {
+            if(ratings[i]>ratings[i-1])
+            {
+                res[i]=res[i-1]+1;
+            }
+            else if(ratings[i]<ratings[i-1])
+            {
+                if(res[i-1]==1)
+                {
+                    int j=i;
+                    while(j>0 && ratings[j-1]>ratings[j] && res[j]>=res[j-1])
+                    {
+                        res[j-1]+=1;
+                        j-=1;
+                    }
+                }
+            }
+        }
+        int s=0;
+        for(int i=0;i<res.size();i++)
+        {
+            s+=res[i];
+        }
+        return s;
+        
+    }
+};
+
+
+
+                        
+                    
+            
