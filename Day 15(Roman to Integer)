@@ -1,0 +1,27 @@
+class Solution:
+    def romanToInt(self, s: str) -> int:
+        d={}
+        d['I']=1
+        d['V']=5
+        d['X']=10
+        d['L']=50
+        d['C']=100
+        d['D']=500
+        d['M']=1000
+        res=d[s[0]]
+        for i in range(1,len(s)):
+            res+=d[s[i]]
+            if s[i]=='V' or s[i]=='X':
+                if s[i-1]=='I':
+                    res-=2*d['I']
+            elif s[i]=='L' or s[i]=='C':
+                if s[i-1]=='X':
+                    res-=2*d['X']
+            elif s[i]=='D' or s[i]=='M':
+                if s[i-1]=='C':
+                    res-=2*d['C']
+        return res
+                    
+
+            
+        
