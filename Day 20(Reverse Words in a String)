@@ -1,0 +1,20 @@
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        t=list(s.split(' '))
+        t=t[::-1]
+        s1=''
+        i=0
+        a=[]
+        while(i<len(t)):
+            if(len(t[i])>=1 and ' ' not in t[i]):
+                a.append(t[i])
+            i+=1
+        i=0
+        while(i<len(a)):
+            s1+=a[i]
+            if(i!=len(a)-1):
+                s1+=' '
+            i+=1
+        return s1
+                
+            
