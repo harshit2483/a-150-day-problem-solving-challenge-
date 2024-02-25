@@ -1,0 +1,42 @@
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val: int = 0, left: 'Node' = None, right: 'Node' = None, next: 'Node' = None):
+        self.val = val
+        self.left = left
+        self.right = right
+        self.next = next
+"""
+
+class Solution:
+    def connect(self, root: 'Node') -> 'Node':
+        if(root is None):
+            return None
+        t=[[root]]
+        self.helper(t)
+        for i in range(len(t)):
+            r=len(t[i])
+            for j in range(r-1):
+                t[i][j].next=t[i][j+1]
+        return root
+                
+        
+        
+    def helper(self,t):
+        p=[]
+        c=0
+        for i in t[-1]:
+            if(i.left is not None):
+                p.append(i.left)
+                c+=1
+            if(i.right is not None):
+                p.append(i.right)
+                c+=1
+        if(c==0):
+            return 
+        else:
+            t.append(p)
+            self.helper(t)
+            
+        
+        
